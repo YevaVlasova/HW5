@@ -11,20 +11,34 @@ const randomArray = getRandomArray(15, 1, 100);
 console.log("Масив випадкових цілих чисел: ", randomArray);
 
 // 3
+// function getAverage(...numbers) {
+//     let sum = 0;
+//     let count = 0;
+//     numbers.forEach(function(number) {
+//         if (Number.isInteger(number)) {
+//             sum += number;
+//             count++;
+//         }
+//     });
+//     if (count === 0) {
+//         return 0;
+//     }
+//     return sum / count;
+// }
+// const average = getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2);
+// console.log("Середнє арифметичне всіх переданих аргументів: ", average);
+
 function getAverage(...numbers) {
-    let sum = 0;
-    let count = 0;
-    numbers.forEach(function(number) {
-        if (Number.isInteger(number)) {
-            sum += number;
-            count++;
-        }
-    });
-    if (count === 0) {
+    const integerNumbers = numbers.filter(number => Number.isInteger(number));
+    
+    if (integerNumbers.length === 0) {
         return 0;
     }
-    return sum / count;
+    
+    const sum = integerNumbers.reduce((acc, number) => acc + number, 0);
+    return sum / integerNumbers.length;
 }
+
 const average = getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2);
 console.log("Середнє арифметичне всіх переданих аргументів: ", average);
 
